@@ -14,8 +14,8 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         android:backgroundTint="@color/colorPrimary"
         app:liftOnScroll="true"
+        android:elevation="4dp"
         android:translationZ="8dp"
-        android:elevation="8dp"
         >
 
 
