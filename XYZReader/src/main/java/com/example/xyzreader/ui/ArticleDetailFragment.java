@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import android.text.Html;
@@ -25,6 +26,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
@@ -65,6 +67,8 @@ public class ArticleDetailFragment extends Fragment implements
     private NestedScrollView mScrollView;
     private CoordinatorLayout mCoordinatorLayout;
     private ColorDrawable mStatusBarColorDrawable;
+    private View mUpButton;
+    private View mUpButtonContainer;
 
     private int mTopInset;
     private View mPhotoContainerView;
@@ -125,6 +129,8 @@ public class ArticleDetailFragment extends Fragment implements
 
     CollapsingToolbarLayout mCollapsingToolbarLayout;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -135,6 +141,15 @@ public class ArticleDetailFragment extends Fragment implements
         Toolbar mToolbar=(Toolbar) mRootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getActivityCast().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivityCast().onSupportNavigateUp();
+            }
+        });
 
         mCollapsingToolbarLayout = mRootView.findViewById(R.id.toolbar_layout);
         mCollapsingToolbarLayout.setTitle("Title");
@@ -150,6 +165,7 @@ public class ArticleDetailFragment extends Fragment implements
                 }
                 if (scrollRange + verticalOffset == 0) {
                     mCollapsingToolbarLayout.setTitle(getString(R.string.app_name)); // Careful! There should be a space between double quote. Otherwise it won't work.
+
                     isShow = false;
                 } else if (!isShow) {
                     mCollapsingToolbarLayout.setTitle(" ");
@@ -167,6 +183,40 @@ public class ArticleDetailFragment extends Fragment implements
         });
 
          */
+
+
+        //mUpButtonContainer = mRootView.findViewById(R.id.up_container);
+
+        //mUpButton = mRootView.findViewById(R.id.action_up);
+        /*
+        mUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSupportNavigateUp();
+            }
+        });
+
+         */
+
+        /*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mUpButtonContainer.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                @Override
+                public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                    view.onApplyWindowInsets(windowInsets);
+                    mTopInset = windowInsets.getSystemWindowInsetTop();
+                    mUpButtonContainer.setTranslationY(mTopInset);
+                    //updateUpButtonPosition();
+                    return windowInsets;
+                }
+            });
+        }
+
+
+         */
+
+
+
 
         mScrollView = (NestedScrollView) mRootView.findViewById(R.id.scrollview);
         /*
