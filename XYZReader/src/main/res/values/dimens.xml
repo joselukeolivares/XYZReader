@@ -17,6 +17,9 @@
     <dimen name="app_bar_elevation">4dp</dimen>
     <dimen name="floating_action_button_elevation">4dp</dimen>
     <dimen name="material_layout_vertical_spacing_between_content_areas">1</dimen>
+    <dimen name="material_layout_keylines_screen_edge_margin">10dp</dimen>
     <integer name="grid_column_count">2</integer>
+
+
 
 </resources>
